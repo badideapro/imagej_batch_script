@@ -17,7 +17,7 @@ macro "batch_crop"{
         //for this loop you might have a problem of RAM memory capacity, which means you get the FIJI crashed, you might want to change the value in programme pref 
         name = list1[i];
         //not to lose your track, though you can change it to anything else
-        open(folder + list1[i]);
+        open(folder + name);
         makeRectangle(59, 68, 513, 513);
         // You absolutely should change these values, as XY coordinates of the rectangle selection: first pair is the beginning, second is the end
         run("Crop");
