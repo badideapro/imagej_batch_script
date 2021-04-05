@@ -1,0 +1,27 @@
+macro "batch_crop"{
+    setBatchMode(true);
+    folder = getDirectory("Input");
+    //you should choose the folder XYZ where your images are at
+    list1 = getFileList(folder);
+    //gets the list of files in the folder 
+    n1 = lengthOf(list1);
+    //gets the number of files in folder
+    folder_out = getDirectory("Output");
+    //the output folder. When started first the number of files is 0
+    list2 = getFileList(folder_out);
+    n2 = lengthOf(list2);
+    small = n1;
+    //condition to control i in for-loop
+
+    for(i = n2; i < small; i++) {
+        //for this loop you might have a problem of RAM memory capacity, which means you get the FIJI crashed, you might want to change the value in programme pref 
+        name = list1[i];
+        //not to lose your track, though you can change it to anything else
+        open(folder + list1[i]);
+        makeRectangle(59, 68, 513, 513);
+        // You absolutely should change these values, as XY coordinates of the rectangle selection: first pair is the beginning, second is the end
+        run("Crop");
+        saveAs("PNG", folder_out + name);
+        close();
+    }
+}
